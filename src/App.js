@@ -1,11 +1,9 @@
-import './App.css';
+import "./App.scss";
 
 function App() {
   return (
     <div className="App">
-      <p>
-        Edit and save to reload.
-      </p>
+      <p className="text-center mt-5 font-weight-bold">React Redux</p>
     </div>
   );
 }
