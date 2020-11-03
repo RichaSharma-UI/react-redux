@@ -1,10 +1,13 @@
+import { BrowserRouter } from 'react-router-dom';
+
+import { Routes } from "./Routes";
 import './App.scss';
 
 function App() {
   return (
-    <div className="App">
-      <p className="text-center mt-5 font-weight-bold">React Redux</p>
-    </div>
+    <BrowserRouter>
+      <Routes/>
+    </BrowserRouter>
   );
 }
 
