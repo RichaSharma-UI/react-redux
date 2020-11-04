@@ -1,0 +1,13 @@
+.product-color-list {
+  div {
+    border: 2px solid transparent;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #0ef0ef;
+    &.active{
+      border-color: #000;
+    }
+  }
+
+}
