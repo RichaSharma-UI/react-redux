@@ -3,10 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { ProductsResponse } from '../MockData/Products';
 import './ProductList.scss';
 
-const ProductList = () => {
+const ProductList = (props) => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    const products = ProductsResponse.products.map((product) => {
+    let products = ProductsResponse.products.map((product) => {
       return {
         ...product,
         selectedVariationId: product.variant[0].variationId,
@@ -14,8 +14,17 @@ const ProductList = () => {
         price: product.variant[0].cost
       }
     })
+
+    if (props.selectedFilter.color !== '' && props.selectedFilter.month !== '') {
+      products = products.filter((product) => product.variant.some((item) => item.color === props.selectedFilter.color && item.months.indexOf(props.selectedFilter.month) > -1));
+    } else if (props.selectedFilter.color !== '') {
+      products = products.filter((product) => product.variant.some((item) => item.color === props.selectedFilter.color));
+    } else if (props.selectedFilter.month !== '') {
+      products = products.filter((product) => product.variant.some((item) => item.months.indexOf(props.selectedFilter.month) > -1));
+    }
+
     setProducts(products);
-  }, [ProductsResponse]);
+  }, [ProductsResponse, props]);
 
   const handleColor = (selectedVariant, selectedProduct) => {
     const updatedProducts = products.map((product) => {
@@ -32,6 +41,7 @@ const ProductList = () => {
     <> 
       <h2>Product List</h2>
       <ul className="mt-4">
+        {products.length === 0 && "No data available."}
         {products.map((product) => {
           return (
           <li key={product.id}>{

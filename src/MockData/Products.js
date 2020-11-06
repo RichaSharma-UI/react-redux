@@ -39,7 +39,7 @@ export const ProductsResponse = {
                     "variationId": "PRODUCT_ID_2_VAR_ID_1", 
                     "cost": 350,
                     "color": "purple",
-                    "months": ["January", "February", "March"]
+                    "months": ["January", "Feburary", "March"]
                     
                 }
             ]
